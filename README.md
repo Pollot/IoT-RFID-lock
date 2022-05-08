@@ -4,7 +4,7 @@ Internet of things using ***arduino IoT cloud*** with esp and arduino boards, fo
 # Setup
 - ESP8266 (ESP12E) -> controls door lock mechanism
 - Arduino uno -> controls RFID scaner with numpad and sends data over to ESP32
-- ESP32 cam -> controls survieillance system and sends arduino data to cloud
+- ESP32 cam -> controls surveillance system and sends arduino data to cloud
 - Raspberry Pi
 
 # Additional information
