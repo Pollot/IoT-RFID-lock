@@ -4,8 +4,9 @@
   bool access;
 */
 
-#include "thingProperties.h"  // Arduino IoT cloud library
 #include <Servo.h>
+
+#include "thingProperties.h"  // Arduino IoT cloud library
 
 #define servoPin D0
 #define relayPin D1  // Relay is used for cutting off servo power
@@ -13,39 +14,39 @@
 Servo lockServo;
 
 void setup() {
-  lockServo.attach(servoPin);
-  
-  pinMode(relayPin, OUTPUT);
-  
-  digitalWrite(relayPin, HIGH);  // Turns relay off
+    lockServo.attach(servoPin);
 
-  Serial.begin(9600);
+    pinMode(relayPin, OUTPUT);
 
-  delay(1500);  // This delay gives the chance to wait for a Serial Monitor without blocking if none is found
+    digitalWrite(relayPin, HIGH);  // Turns relay off
 
-  initProperties();  // Defined in thingProperties.h
+    Serial.begin(9600);
 
-  ArduinoCloud.begin(ArduinoIoTPreferredConnection);  // Connect to Arduino IoT Cloud
+    delay(1500);  // This delay gives the chance to wait for a Serial Monitor without blocking if none is found
 
-  setDebugMessageLevel(2);
-  ArduinoCloud.printDebugInfo();
+    initProperties();  // Defined in thingProperties.h
+
+    ArduinoCloud.begin(ArduinoIoTPreferredConnection);  // Connect to Arduino IoT Cloud
+
+    setDebugMessageLevel(2);
+    ArduinoCloud.printDebugInfo();
 }
 
 void loop() {
-  ArduinoCloud.update();
+    ArduinoCloud.update();
 }
 
-void onAccessChange()  {
-  digitalWrite(relayPin, LOW);  // Turns relay on
-  
-  delay(100);
-  
-  if (access == true)
-    lockServo.write(120);
-  else
-    lockServo.write(0);
-    
-  delay(2000);
-  
-  digitalWrite(relayPin, HIGH);  // Turns relay off
+void onAccessChange() {
+    digitalWrite(relayPin, LOW);  // Turns relay on
+
+    delay(100);
+
+    if (access == true)
+        lockServo.write(0);
+    else
+        lockServo.write(120);
+
+    delay(2000);
+
+    digitalWrite(relayPin, HIGH);  // Turns relay off
 }
