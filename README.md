@@ -14,5 +14,5 @@ I used cloud in order to control project outside from local network, without nee
 # Specific information
 - [ESP used for door lock](/Door%20lock%20ESP/Information.md)
 - [Arduino used for scanning cards and inputting PIN](/Arduino%20UID%20scanner%20with%20PIN/Information.md)
-- [ESP 32 cam used for surveillance system](/ESP32%20cam/Information.md)
+- [ESP32 cam used for surveillance system](/ESP32%20cam/Information.md)
 - [ESP used for sending access data from arduino to cloud](/ESP%20communicating%20with%20arduino/Information.md)
