@@ -3,6 +3,7 @@
 - [Wiring diagram](Wiring.jpg) 
 - [Arduino uno SPI/I2C pinout](Arduino%20uno%20pinout.jpg)
 - [Arduino mega SPI/I2C pinout](Arduino%20mega%20pinout.jpeg)
+
 <p align="center">
-  <img width="230" height="300" src="Photo.jpg">
+  <img width="460" height="600" src="Photo.jpg">
 </p>
