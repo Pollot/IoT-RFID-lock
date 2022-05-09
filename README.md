@@ -3,7 +3,7 @@ Internet of things created using ***arduino IoT cloud***, consisting of esp and 
 
 # Setup
 - ESP8266 (ESP12E) -> controls door lock mechanism
-- Arduino uno -> controls RFID scanner and keypad
+- Arduino mega -> controls RFID scanner, keypad and lcd display
 - ESP32 cam -> controls surveillance system and sends arduino data to cloud
 
 # Specific information
