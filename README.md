@@ -1,10 +1,20 @@
 # IoT RFID door lock
-Internet of things created using ***arduino IoT cloud***, consisting of esp and arduino boards. It makes a 3D printed RFID protected (with PIN) lock. There is also a surveillance system. (Raspberry Pi integration planned)
+Internet of things created using **arduino IoT cloud**, consisting of:
+- 2 x ESP8266
+- Arduino mega 
+- ESP32 cam.
+
+Goal of the project is to create a 3D printed RFID protected (with PIN) lock, with surveillance. 
+
+I used cloud in order to control project outside from local network, without need to forward any port. It's also great for integration with different projects, and additional control from web based dashboard.
+
+(Raspberry Pi integration planned)
 
 # Setup
-- ESP8266 (ESP12E) -> controls door lock mechanism
+- 1st ESP8266 (ESP12E) -> controls door lock mechanism
 - Arduino mega -> controls RFID scanner, keypad and lcd display
-- ESP32 cam -> controls surveillance system and sends arduino data to cloud
+- 2nd ESP8266 (ESP12E) -> sends arduino mega data to IoT cloud 
+- ESP32 cam -> surveillance system
 
 # Specific information
 - [ESP used for door lock](/Door%20lock%20ESP/Information.md)
