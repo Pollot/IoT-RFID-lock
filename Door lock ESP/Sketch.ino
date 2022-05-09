@@ -18,7 +18,7 @@ void setup() {
 
     pinMode(relayPin, OUTPUT);
 
-    digitalWrite(relayPin, HIGH);  // Turns relay off
+    digitalWrite(relayPin, HIGH);  // Turn relay off
 
     Serial.begin(9600);
 
@@ -37,7 +37,7 @@ void loop() {
 }
 
 void onAccessChange() {
-    digitalWrite(relayPin, LOW);  // Turns relay on
+    digitalWrite(relayPin, LOW);  // Turn relay on
 
     delay(100);
 
@@ -48,5 +48,5 @@ void onAccessChange() {
 
     delay(2000);
 
-    digitalWrite(relayPin, HIGH);  // Turns relay off
+    digitalWrite(relayPin, HIGH);  // Turn relay off
 }
