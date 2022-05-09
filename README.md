@@ -4,7 +4,7 @@ Internet of things created using **arduino IoT cloud**, consisting of:
 - Arduino mega 
 - ESP32 cam.
 
-Goal of the project is to create a 3D printed RFID protected (with PIN) lock, with surveillance. 
+Goal of the project is to create a 3D printed RFID protected (with PIN) lock, including surveillance. 
 
 I used cloud in order to control project outside from local network, without need to forward any port. It's also great for integration with different projects, and additional control from web based dashboard.
 
