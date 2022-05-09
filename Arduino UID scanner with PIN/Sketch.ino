@@ -38,6 +38,9 @@ Keypad pinKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
 LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
 
+#define rLED 9
+#define gLED 10
+
 // Variables:
 char key;  // Stores pressed key
 
@@ -52,6 +55,9 @@ void setup() {
     Serial.begin(9600);
 
     lcd.begin(24, 2);
+
+    pinMode(rLED, OUTPUT);
+    pinMode(gLED, OUTPUT);
 
     SPI.begin();         // Initiate SPI bus
     mfrc522.PCD_Init();  // Initiate MFRC522
@@ -87,10 +93,14 @@ void loop() {
 
     if (content.substring(1) == card1 || content.substring(1) == card2) {
         lcd.print("Authorized!");
-        delay(3000);
+        digitalWrite(gLED, HIGH);
+        delay(2000);
+        digitalWrite(gLED, LOW);
     } else {
         lcd.print("Denied!");
-        delay(3000);
+        digitalWrite(rLED, HIGH);
+        delay(4000);
+        digitalWrite(rLED, LOW);
         lcd.clear();
         return;
     }
@@ -122,11 +132,19 @@ void loop() {
     if (correct == length && inputNumber == length) {  // Lenght of inputted passwords need to be same as well as amount of correct characters
         lcd.clear();
         lcd.print("Correct!");
-        delay(3000);
+        Serial.write(1);  // Sends data to ESP
+        success();
+        Serial.write(1);  // Additional data, just in case
+        delay(10000);
+        lcd.clear();
+        lcd.print("Locking door...");
+        Serial.write(0);  // After 10 seconds, door will close
+        delay(2000);
+        Serial.write(0);  // Additional data, just in case
     } else {
         lcd.clear();
         lcd.print("Incorrect! ");
-        delay(3000);
+        fail();
     }
 
     /*// Debugging for testing:
@@ -147,6 +165,24 @@ void loop() {
     }*/
 
     reset();
+}
+
+void success() {
+    for (int i = 0; i < 15; i++) {
+        digitalWrite(gLED, HIGH);
+        delay(200);
+        digitalWrite(gLED, LOW);
+        delay(200);
+    }
+}
+
+void fail() {
+    for (int i = 0; i < 20; i++) {
+        digitalWrite(rLED, HIGH);
+        delay(200);
+        digitalWrite(rLED, LOW);
+        delay(200);
+    }
 }
 
 void reset() {
