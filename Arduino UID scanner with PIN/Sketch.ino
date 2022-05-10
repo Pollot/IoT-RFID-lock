@@ -140,6 +140,7 @@ void loop() {
     }
 
     lcd.clear();
+    input = "";  // ! reseting input string
 }
 
 void success() {
