@@ -44,12 +44,9 @@ LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
 // Variables:
 char key;  // Stores pressed key
 
-const int length = 4;                       // Password length (needed)
-const int maxLength = 24;                   // Max possible length of input (I use lcd width)
-const char password[length + 1] = " 1234";  // !!! Password as an array, leave password[0] blank (first character needs to be a space)
-char input[maxLength];
-int inputNumber = 0;
-int correct = 0;
+String password = "1234";  // Password
+String input;
+int inputNumber;  // Needed in order to not go past lcd width
 
 void setup() {
     Serial.begin(9600);
@@ -109,7 +106,9 @@ void loop() {
     lcd.print("Input PIN:");
     lcd.setCursor(0, 1);
 
-    while (inputNumber < maxLength) {
+    inputNumber = 0;
+
+    while (inputNumber < 24) {
         key = pinKeypad.getKey();
 
         if (key == '#' || key == '*')  // You can confirm password using those characters
@@ -118,18 +117,11 @@ void loop() {
         if (key) {
             inputNumber++;
             lcd.print(key);
-            input[inputNumber] = key;  // Input pressed key into array
+            input += key;  // Input pressed key into "input" string
         }
     }
 
-    for (int i = 1; i <= length; i++) {
-        if (password[i] == input[i])
-            correct++;
-        else
-            break;
-    }
-
-    if (correct == length && inputNumber == length) {  // Lenght of inputted passwords need to be same as well as amount of correct characters
+    if (input.equals(password) == true) {
         lcd.clear();
         lcd.print("Correct!");
         Serial.write(1);  // Sends data to ESP
@@ -147,24 +139,7 @@ void loop() {
         fail();
     }
 
-    /*// Debugging for testing:
-    Serial.print("Correct = ");
-    Serial.println(correct);
-    Serial.print("Input number = ");
-    Serial.println(inputNumber);
-    Serial.println();
-    for (int i = 0; i <= length; i++)
-    {
-      Serial.print("Array number = ");
-      Serial.println(i);
-      Serial.print("Password = ");
-      Serial.println(password[i]);
-      Serial.print("Input = ");
-      Serial.println(input[i]);
-      Serial.println();
-    }*/
-
-    reset();
+    lcd.clear();
 }
 
 void success() {
@@ -183,10 +158,4 @@ void fail() {
         digitalWrite(rLED, LOW);
         delay(200);
     }
-}
-
-void reset() {
-    lcd.clear();
-    inputNumber = 0;
-    correct = 0;
 }
