@@ -6,7 +6,7 @@
 
 #include "thingProperties.h"
 
-int incomingByte = 0;  // For incoming serial data
+int incoming = 0;  // For incoming serial data
 
 void setup() {
     Serial.begin(9600);
@@ -25,12 +25,12 @@ void loop() {
     ArduinoCloud.update();
 
     if (Serial.available() > 0) {  // When data has been received
-        incomingByte = Serial.read();
+        incoming = Serial.read();
 
-        if (incomingByte == 1)
+        if (incoming == 1)
             access = true;  // Open door lock
 
-        if (incomingByte == 0)
+        if (incoming == 0)
             access = false;  // Close door lock
     }
 }
