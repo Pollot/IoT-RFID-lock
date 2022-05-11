@@ -2,7 +2,8 @@
 Internet of things created using **arduino IoT cloud**, consisting of:
 - 2 x ESP8266
 - Arduino mega 
-- ESP32 cam.
+- ESP32 cam
+- Raspberry Pi hosting Home Assistant
 
 Goal of the project is to create a 3D printed RFID protected (with PIN) lock, including surveillance. 
 
